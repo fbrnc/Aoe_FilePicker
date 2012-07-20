@@ -7,18 +7,35 @@
 	</modules>
 	<global>
 		<models>
-			<aoe_templatehints>
-				<class>Aoe_TemplateHints_Model</class>
-			</aoe_templatehints>
+			<aoe_filepicker>
+				<class>Aoe_FilePicker_Model</class>
+			</aoe_filepicker>
 		</models>
+		<helpers>
+			<aoe_filepicker>
+				<class>Aoe_FilePicker_Helper</class>
+			</aoe_filepicker>
+		</helpers>
+		<blocks>
+			<aoe_filepicker>
+				<class>Aoe_FilePicker_Block</class>
+			</aoe_filepicker>
+			<adminhtml>
+				<rewrite>
+					<media_uploader>Aoe_FilePicker_Block_FilePicker</media_uploader>
+				</rewrite>
+			</adminhtml>
+		</blocks>
 	</global>
-	<default>
-		<dev>
-			<debug>
-				<border_color_notcached>red</border_color_notcached>
-				<border_color_cached>green</border_color_cached>
-				<border_color_cached_inherit>orange</border_color_cached_inherit>
-			</debug>
-		</dev>
-	</default>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <aoe_filepicker before="Mage_Adminhtml">Aoe_FilePicker</aoe_filepicker>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
 </config>
