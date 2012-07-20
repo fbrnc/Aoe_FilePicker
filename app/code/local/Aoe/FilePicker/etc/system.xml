@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<admin>
+			<groups>
+				<aoe_filepicker translate="label">
+					<label>Aoe_Filepicker</label>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<apikey translate="label">
+							<label>Filepicker.io API Key</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>200</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</apikey>
+					</fields>
+				</aoe_filepicker>
+			</groups>
+		</admin>
+	</sections>
+</config>

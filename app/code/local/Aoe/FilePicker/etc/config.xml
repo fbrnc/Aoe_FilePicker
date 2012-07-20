@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Aoe_FilePicker>
+			<version>0.0.1</version>
+		</Aoe_FilePicker>
+	</modules>
+	<global>
+		<models>
+			<aoe_templatehints>
+				<class>Aoe_TemplateHints_Model</class>
+			</aoe_templatehints>
+		</models>
+	</global>
+	<default>
+		<dev>
+			<debug>
+				<border_color_notcached>red</border_color_notcached>
+				<border_color_cached>green</border_color_cached>
+				<border_color_cached_inherit>orange</border_color_cached_inherit>
+			</debug>
+		</dev>
+	</default>
+</config>
