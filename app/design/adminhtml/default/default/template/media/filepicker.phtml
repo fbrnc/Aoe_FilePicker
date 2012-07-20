@@ -1,0 +1,58 @@
+<?php /* @var $this Aoe_FilePicker_Block_FilePicker */ ?>
+
+<?php $configUrl = $this->getUrl('adminhtml/system_config/edit', array('section' => 'admin')) . '#admin_aoe_filepicker'; ?>
+
+<?php if (!$this->getApiKey()): ?>
+	<p><?php echo $this->__('[Aoe_FilePicker] Error: No API Key found!'); ?>: <a href="<?php echo $configUrl ?>"><?php echo $this->__('Configuration'); ?></a></p>
+<?php else: ?>
+	<?php if (!$this->getServices()): ?>
+		<p><?php echo $this->__('[Aoe_FilePicker] Error: No services found!'); ?>: <a href="<?php echo $configUrl ?>"><?php echo $this->__('Configuration'); ?></a></p>
+	<?php else: ?>
+
+		<div id="<?php echo $this->getHtmlId() ?>" class="uploader">
+			<div class="buttons">
+				<div id="<?php echo $this->getHtmlId() ?>-filepicker">
+					<button id="<?php echo $this->getHtmlId() ?>-button"><?php echo Mage::helper('media')->__('Add new images') ?></button>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="//api.filepicker.io/v0/filepicker.js"></script>
+		<script type="text/javascript">
+		//<![CDATA[
+
+		filepicker.setKey('<?php echo $this->getApiKey(); ?>');
+
+		<?php echo $this->getJsObjectName() ?> = {
+			data: <?php echo $this->getConfigJson() ?>,
+			removeFile: function() {}
+		}
+
+		Event.observe('<?php echo $this->getHtmlId() ?>-button', 'click', function(event) {
+			filepicker.getFile('image/*', {
+				'multiple': true,
+				'modal': true,
+				'services': [<?php echo $this->getServices() ?>]
+			}, function(response) {
+				// take the response from filepicker.io and pass send it to Magento via Ajax
+				new Ajax.Request(<?php echo $this->getJsObjectName() ?>.data.url, {
+					method: 'post',
+					parameters: {fp_response: JSON.stringify(response) },
+					onSuccess: function(transport) {
+						transport.responseText.evalJSON().each(function(item) {
+							media_gallery_contentJsObject.handleUploadComplete([{response: Object.toJSON(item)}])
+						});
+
+					},
+					onFailure: function() { alert('Something went wrong...') }
+				});
+
+			});
+			Event.stop(event);
+		});
+
+		//]]>
+		</script>
+
+	<?php endif; ?>
+<?php endif; ?>
