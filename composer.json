@@ -1,0 +1,16 @@
+{
+    "name":"fbrnc/aoe_filepicker",
+    "type":"magento-module",
+    "license":"OSL-3.0",
+    "homepage":"http://www.fabrizio-branca.de/uploading-product-images-to-magento-using-aoe-filepicker.html",
+    "description":"Integrates Filepicker.io into Magento.",
+    "authors":[
+        {
+            "name":"Fabrizio Branca",
+            "email":"mail@{firstname}-{lastname}.de"
+        }
+    ],
+    "require":{
+        "magento-hackathon/magento-composer-installer":"dev-master"
+    }
+}
